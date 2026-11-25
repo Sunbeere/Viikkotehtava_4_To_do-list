@@ -63,7 +63,6 @@ loadTasks();
     <FlatList<Task>
       data={tasks}
       keyExtractor={(item) => item.id.toString()}
-      renderItem={({item}) => <Row item={item} />}
       renderItem={({item}) => (
        <Row item={item} onPress={() => markTaskAsCompleted(item.id)} />
       )}
