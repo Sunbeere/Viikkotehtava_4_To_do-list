@@ -1,15 +1,16 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { Task } from './types/Task'
 
 interface TodoRowProps {
     item: Task
+    onPress: () => void
 }
 
-export default function Row({item}: TodoRowProps) {
+export default function Row({item, onPress}: TodoRowProps) {
   return (
-    <View style={styles.todoRow}>
+    <Pressable style={styles.todoRow} onPress={onPress}>
       <Text style={styles.todoText}>{item.text}</Text>
-    </View>
+    </Pressable>
   )
 }
 
