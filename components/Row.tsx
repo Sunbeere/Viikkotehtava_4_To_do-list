@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { Text, StyleSheet, Pressable } from 'react-native'
 import { Task } from './types/Task'
 
 interface TodoRowProps {
@@ -10,12 +10,19 @@ export default function Row({ item, onPress }: TodoRowProps) {
     return (
         <Pressable style={styles.todoRow} onPress={onPress}>
 
-            <Text style={[styles.todoText, { textDecorationLine: item.completed === 1 ? 'line-through' : 'none' }]}>
+
+            <Text style={[styles.todoText, 
+                { textDecorationLine: item.completed === 1 ? 'line-through' : 'none'
+
+                }
+                ]}>
                 {item.text}
             </Text>
+           
         </Pressable >
     )
 }
+
 
 const styles = StyleSheet.create({
     todoRow: {
@@ -23,9 +30,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#f5f5f5',
         alignItems: 'center',
         padding: 4,
-        margin: 4,
+        marginHorizontal: 12,
         borderColor: '#C1c0c0',
-        borderWidth: 8,
+        borderWidth: 1,
         borderRadius: 8,
         marginBottom: 8,
 
@@ -33,6 +40,7 @@ const styles = StyleSheet.create({
 
     todoText: {
         flex: 1,
+        fontSize: 20,
         color: '#000'
     }
 });
