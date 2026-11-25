@@ -23,7 +23,17 @@ export default function App() {
 loadTasks();
   }, []);
 
+  const markTaskAsCompleted = async (id: number) => {
+    const updatedTasks = tasks.map(task =>
+    task.id === id
+    ? {...task, completed: task.completed === 1 ? 0 : 1 }
+    : task
+    );
  
+  setTasks(updatedTasks);
+  await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
+};
+
 
   const addTask = async () => {
    if(!input.trim()) return
@@ -37,6 +47,7 @@ loadTasks();
    
     console.log("Adding new item")
   }
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,6 +64,9 @@ loadTasks();
       data={tasks}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({item}) => <Row item={item} />}
+      renderItem={({item}) => (
+       <Row item={item} onPress={() => markTaskAsCompleted(item.id)} />
+      )}
     />
     <StatusBar style="auto" />
     </SafeAreaView>
