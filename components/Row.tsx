@@ -6,12 +6,15 @@ interface TodoRowProps {
     onPress: () => void
 }
 
-export default function Row({item, onPress}: TodoRowProps) {
-  return (
-    <Pressable style={styles.todoRow} onPress={onPress}>
-      <Text style={styles.todoText}>{item.text}</Text>
-    </Pressable>
-  )
+export default function Row({ item, onPress }: TodoRowProps) {
+    return (
+        <Pressable style={styles.todoRow} onPress={onPress}>
+
+            <Text style={[styles.todoText, { textDecorationLine: item.completed === 1 ? 'line-through' : 'none' }]}>
+                {item.text}
+            </Text>
+        </Pressable >
+    )
 }
 
 const styles = StyleSheet.create({
@@ -25,12 +28,12 @@ const styles = StyleSheet.create({
         borderWidth: 8,
         borderRadius: 8,
         marginBottom: 8,
-        
+
     },
 
     todoText: {
-      flex:1,
-      color: '#000'
+        flex: 1,
+        color: '#000'
     }
 });
 
